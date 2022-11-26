@@ -16,5 +16,6 @@ with
             end as is_discontinuado
         from {{ source('erp', 'products') }}
     )
+
 select *
 from source_products

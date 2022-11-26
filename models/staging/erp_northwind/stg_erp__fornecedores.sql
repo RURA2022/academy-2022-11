@@ -1,19 +1,20 @@
 with
-    source_suppliers as (
+    source_fornecedores as (
         select
-            cast(supplier_id as int) as id_fornecedor	
-            , cast(company_name	as string) as nome_empresa				
-            , cast(contact_name	as string) as nome_contato
-            , cast (contact_title as string) as titulo_contato
-            , cast (address as string) as endereco
-            , cast (city as string) as cidade
-            , cast (region as string) as regiao
-            , cast (postal_code as string) as codigo_postal
-            , cast (country as string) as pais
-            , cast (phone as string) as telefone
-            , cast (fax as string) as fax
-            , cast (homepage as string) as homepage
+            cast(supplier_id as int) id_fornecedor
+            , cast(company_name	as string) as nome_do_fornecedor
+            , cast(contact_name	as string) as contato_fornecedor
+            , cast(contact_title as string) as titulo_de_cortesia_fornecedor
+            , cast(address as string) as endereco_fornecedor
+            , cast(postal_code as string) as cep_fornecedor
+            , cast(city	as string) as cidade_fornecedor
+            , cast(region as string) as regiao_fornecedor
+            , cast(country as string) as pais_fornecedor
+            , cast(phone as string) as telefone_fornecedor
+            , cast(fax as string) as fax_fornecedor
+            --, homepage
         from {{ source('erp', 'suppliers') }}
     )
+
 select *
-from source_suppliers
+from source_fornecedores
