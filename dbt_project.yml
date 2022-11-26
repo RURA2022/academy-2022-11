@@ -35,12 +35,16 @@ models:
     staging:
       erp_northwind:
        +materialized: view
+       +schema: stg
+       
     marts:
       +materialized: table
+      +schema: marts
 
     # Applies to all files under models/example/
     example:
       +materialized: table
+    
 
 
 

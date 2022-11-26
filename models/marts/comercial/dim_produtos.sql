@@ -1,20 +1,20 @@
 with
-    categorias as (
-        select *		
-        from {{ ref('stg_erp__categorias') }}
-    )
-
-    , produtos as (
-        select *		
+    produtos as (
+        select *
         from {{ ref('stg_erp__produtos') }}
     )
 
+    , categorias as (
+        select *
+        from {{ ref('stg_erp__categorias') }}
+    )
+
     , fornecedores as (
-        select *		
+        select *
         from {{ ref('stg_erp__fornecedores') }}
     )
 
-    , uniao_tabelas as (
+    , joined as (
         select
             produtos.id_produto
             , produtos.id_fornecedor	
@@ -39,17 +39,18 @@ with
             , fornecedores.fax_fornecedor
             , fornecedores.telefone_fornecedor
         from produtos
-        left join categorias on produtos.id_categoria = categorias.id_categoria
-        left join fornecedores on produtos.id_fornecedor = fornecedores.id_fornecedor
+        left join categorias on
+            produtos.id_categoria = categorias.id_categoria
+        left join fornecedores on
+            produtos.id_fornecedor = fornecedores.id_fornecedor
     )
 
-    , transformacoes as (
+    , transformed as (
         select
             row_number() over (order by id_produto) as sk_produto
             , *
-        from uniao_tabelas
+        from joined
     )
 
 select *
-from transformacoes
-
+from transformed
