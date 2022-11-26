@@ -1,0 +1,124 @@
+version: 2
+
+sources:
+  - name: erp
+    description: Banco réplica do erp da northwind.
+    schema: erp_northwind
+    tables:
+      - name: orders
+        description: Uma linha por pedido. Inclui pedidos cancelados e deletados.
+        columns:
+          - name: order_id
+            description: Chave primária da tabela de ordens.
+            tests:
+              - unique
+              - not_null
+      
+      - name: products
+        description: Tabela de produtos.
+        columns:
+          - name: product_id
+            description: Chave primária da tabela de produtos.
+            tests:
+              - unique
+              - not_null
+
+      - name: categories
+        description: Tabela de categorias.
+        columns:
+          - name: category_id
+            description: Chave primária da tabela de categorias.
+            tests:
+              - unique
+              - not_null
+
+      - name: suppliers
+        description: Tabela de fornecedores.
+        columns:
+          - name: supplier_id
+            description: Chave primária da tabela de fornecedores.
+            tests:
+              - unique
+              - not_null
+
+      - name: customers
+        description: Tabela de clientes.
+        columns:
+          - name: customer_id
+            description: Chave primária da tabela de clientes.
+            tests:
+              - unique
+              - not_null
+
+      - name: employee_territories
+        description: Tabela de empregados x territorios.
+        columns:
+          - name: employee_id
+            description: Chave da tabela de empregados.
+            tests:
+              - not_null
+          - name: territory_id
+            description: Chave da tabela de territorios.
+            tests:
+              - not_null
+
+      - name: employees
+        description: Tabela de empregados.
+        columns:
+          - name: employee_id
+            description: Chave primaria da tabela de empregados.
+            tests:
+              - unique
+              - not_null
+
+      - name: order_details
+        description: Tabela de itens das ordens.
+        columns:
+          - name: order_id
+            description: Chave da tabela de ordens.
+            tests:
+              - not_null
+          - name: product_id
+            description: Chave da tabela de produtos.
+            tests:
+              - not_null
+
+      - name: region
+        description: Tabela de regioes.
+        columns:
+          - name: region_id
+            description: Chave primaria da tabela de regioes.
+            tests:
+              - unique
+              - not_null  
+
+      - name: shippers
+        description: Tabela de transportadores.
+        columns:
+          - name: shipper_id
+            description: Chave primaria da tabela de transportadores.
+            tests:
+              - unique
+              - not_null 
+
+      - name: territories
+        description: Tabela de territorios.
+        columns:
+          - name: territory_id
+            description: Chave primaria da tabela de territorios.
+            tests:
+              - unique
+              - not_null 
+
+      - name: us_states
+        description: Tabela de estados.
+        columns:
+          - name: state_id
+            description: Chave primaria da tabela de estados.
+            tests:
+              - unique
+              - not_null 
+
+
+
+
